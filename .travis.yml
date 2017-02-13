@@ -1,0 +1,20 @@
+osx_image: xcode8.2.1
+language: objective-c
+cache:
+  - bundler
+  - cocoapods
+branches:
+  only:
+    - develop
+    - master
+notifications:
+  email: false
+before_install:
+  - gem install bundler
+  - bundle update
+  - bundle install
+  - pod spec repo update --silent
+script:
+  - bundle exec fastlane test
+after_success:
+  - bundle exec fastlane deploy
