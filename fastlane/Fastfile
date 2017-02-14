@@ -1,26 +1,24 @@
 lane :test do
-  branch = git_branch()
   scan(
     device: "iPhone 6",
     clean: true,
     code_coverage: true,
     slack_url: "https://hooks.slack.com/services/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",
-    slack_channel: "##{branch}",
-    slack_message: "[#{branch}] Scan results",
+    slack_channel: "##{git_branch()}",
+    slack_message: "[#{git_branch()}] Scan results",
     # Slack only if the current branch is master or develop
-    skip_slack: !((branch != "master") || (branch != "develop")),
+    skip_slack: !((git_branch() != "master") || (git_branch() != "develop")),
     # If the current branch is dev, send to slack only if tests fail,
     # to prevent from being spammed
     slack_only_on_failure: false,
-    open_report: branch == "develop"
+    open_report: git_branch() == "develop"
   )
   xcov
 end
 
 lane :newrc do
-  branch = git_branch()
 
-  if branch == "master"
+  if git_branch() == "master"
     sh('git fetch --tags')
     tag = last_git_tag()
     project_version = get_version_number()
@@ -37,8 +35,7 @@ lane :newrc do
 end
 
 lane :deploy do
-  branch = git_branch()
-  if branch == "master"
+  if git_branch() == "master"
     version = get_version_number()
 
     set_github_release(
@@ -53,7 +50,7 @@ lane :deploy do
     slack(
       slack_url: "https://hooks.slack.com/services/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",
       slack_channel: "#release",
-      slack_message: "[#{branch}] There is a new release: v#{version}",
+      slack_message: "[#{git_branch()}] There is a new release: v#{version}",
       success: true,
       use_webhook_configured_username_and_icon: true
     )
