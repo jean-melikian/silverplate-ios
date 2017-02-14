@@ -33,6 +33,11 @@ xcode-select --install
 fastlane test
 ```
 
+### newrc
+```
+fastlane newrc
+```
+
 ### deploy
 ```
 fastlane deploy

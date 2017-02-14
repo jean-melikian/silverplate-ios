@@ -31,8 +31,8 @@ lane :newrc do
     podspec_version = version_get_podspec(path: "../SilverPlate.podspec")
 
     if  tag == "v"+podspec_version
-    git_commit(path: ["../SilverPlate.podspec", "./Example/MyPod.lock"], message: "Bumped to version #{version}")
-
+      git_commit(path: ["../SilverPlate.podspec", "./Example/MyPod.lock"], message: "Bumped to version #{version}")
+    end
   end
 end
 
