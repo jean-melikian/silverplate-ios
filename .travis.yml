@@ -14,7 +14,8 @@ before_install:
   - bundle update
   - bundle install
   - pod install --repo-update --silent
+  - chmod +x travis/*.sh
 script:
-  - sh travis/fastlane_test.sh
+  - ./travis/fastlane_test.sh
 after_success:
-  - sh travis/fastlane_deploy.sh
+  - ./travis/fastlane_deploy.sh
