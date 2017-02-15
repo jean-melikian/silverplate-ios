@@ -13,7 +13,7 @@ before_install:
   - gem install bundler
   - bundle update
   - bundle install
-  - pod spec repo update --silent
+  - pod install --repo-update --silent
 script:
   - bundle exec fastlane test
 after_success:
