@@ -32,12 +32,13 @@ public final class SilverPlate: SilverPlateDelegate {
     public var onInternetStatusChanged: ((Network) -> Void)?
     
     internal func internetStatusChanged(status: Network) {
+        print("Internet is reachable via: \(status)")
         if let internetStatusChangedClosure = self.onInternetStatusChanged {
             internetStatusChangedClosure(status)
         }
     }
     
     public func getReachabilityStatus() {
-        connectivity.getReachabilityStatus()
+        connectivity.sendReachabilityStatus()
     }
 }

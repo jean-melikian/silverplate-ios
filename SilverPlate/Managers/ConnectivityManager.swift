@@ -27,7 +27,7 @@ internal class ConnectivityManager {
         }
     }
     
-    func getReachabilityStatus() {
+    func sendReachabilityStatus() {
         if reachability.isReachable {
             if reachability.isReachableViaWiFi {
                 print("Reachable via WiFi")
