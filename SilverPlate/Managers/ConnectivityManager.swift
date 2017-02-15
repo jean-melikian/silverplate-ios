@@ -29,6 +29,8 @@ internal class ConnectivityManager {
     }
     
     func sendReachabilityStatus() {
+        let networkInfo = CTTelephonyNetworkInfo();
+        let carrierTypeString = networkInfo.currentRadioAccessTechnology
         
         if reachability.isReachable {
             if reachability.isReachableViaWiFi {
@@ -36,7 +38,33 @@ internal class ConnectivityManager {
                 SilverPlate.shared.internetStatusChanged(status: SilverPlate.Network.wifi)
             } else if reachability.isReachableViaWWAN {
                 print("Reachable via Cellular")
-                SilverPlate.shared.internetStatusChanged(status: SilverPlate.Network.cellular)
+                var carrierType: SilverPlate.Network
+                switch carrierTypeString! {
+                // 2G
+                case CTRadioAccessTechnologyEdge, CTRadioAccessTechnologyWCDMA:
+                    carrierType = SilverPlate.Network.cellular2g
+                    break
+                    
+                // 3G
+                case CTRadioAccessTechnologyGPRS,
+                     CTRadioAccessTechnologyeHRPD,
+                     CTRadioAccessTechnologyHSDPA,
+                     CTRadioAccessTechnologyHSUPA,
+                     CTRadioAccessTechnologyCDMA1x,
+                     CTRadioAccessTechnologyCDMAEVDORev0,
+                     CTRadioAccessTechnologyCDMAEVDORevA,
+                     CTRadioAccessTechnologyCDMAEVDORevB:
+                    carrierType = SilverPlate.Network.cellular3g
+                    break
+                    
+                // 4G
+                case CTRadioAccessTechnologyLTE:
+                    carrierType = SilverPlate.Network.cellular4g
+                    break
+                default:
+                    carrierType = SilverPlate.Network.cellular3g
+                }
+                SilverPlate.shared.internetStatusChanged(status: carrierType)
             }
         } else {
             print("Network not reachable")
@@ -46,20 +74,8 @@ internal class ConnectivityManager {
     
     @objc func reachabilityChanged(note: NSNotification) {
         
-        let reachability = note.object as! Reachability
-        
-        if reachability.isReachable {
-            if reachability.isReachableViaWiFi {
-                print("Reachable via WiFi")
-                SilverPlate.shared.internetStatusChanged(status: SilverPlate.Network.wifi)
-            } else if reachability.isReachableViaWWAN {
-                print("Reachable via Cellular")
-                SilverPlate.shared.internetStatusChanged(status: SilverPlate.Network.cellular)
-            }
-        } else {
-            print("Network not reachable")
-            SilverPlate.shared.internetStatusChanged(status: SilverPlate.Network.none)
-        }
+        reachability = note.object as! Reachability
+        sendReachabilityStatus()
     }
     
     deinit {

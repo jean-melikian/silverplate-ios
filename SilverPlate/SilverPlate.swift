@@ -18,7 +18,9 @@ public final class SilverPlate: SilverPlateDelegate {
     public enum Network: String {
         case none
         case wifi
-        case cellular
+        case cellular2g
+        case cellular3g
+        case cellular4g
         
         var description: String {
             switch self {
@@ -26,8 +28,12 @@ public final class SilverPlate: SilverPlateDelegate {
                 return "none"
             case .wifi:
                 return "wifi"
-            case .cellular:
-                return "cellular"
+            case .cellular2g:
+                return "cellular2g"
+            case .cellular3g:
+                return "cellular3g"
+            case .cellular4g:
+                return "cellular4g"
             }
         }
     }
