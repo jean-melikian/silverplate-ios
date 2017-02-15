@@ -33,8 +33,8 @@ class SilverPlateTests: XCTestCase {
     func testInternetConnection() {
        
         SilverPlate.shared.onInternetStatusChanged = { (status) in
-            print("\nNetwork current status: \(status) \n")
-            XCTAssert(status == SilverPlate.Network.wifi)
+            print("\nCurrent network status: \(status) \n")
+            XCTAssert(status != SilverPlate.Network.none)
         }
     }
 }
