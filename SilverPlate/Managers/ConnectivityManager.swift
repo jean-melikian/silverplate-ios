@@ -8,6 +8,7 @@
 
 import Foundation
 import ReachabilitySwift
+import CoreTelephony
 
 internal class ConnectivityManager {
     
@@ -28,6 +29,7 @@ internal class ConnectivityManager {
     }
     
     func sendReachabilityStatus() {
+        
         if reachability.isReachable {
             if reachability.isReachableViaWiFi {
                 print("Reachable via WiFi")

@@ -15,10 +15,21 @@ internal protocol SilverPlateDelegate {
 
 public final class SilverPlate: SilverPlateDelegate {
     
-    public enum Network: Int {
-        case none = 0
-        case wifi = 1
-        case cellular = 2
+    public enum Network: String {
+        case none
+        case wifi
+        case cellular
+        
+        var description: String {
+            switch self {
+            case .none:
+                return "none"
+            case .wifi:
+                return "wifi"
+            case .cellular:
+                return "cellular"
+            }
+        }
     }
     
     public static let shared: SilverPlate = SilverPlate()
