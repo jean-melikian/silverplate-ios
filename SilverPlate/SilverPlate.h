@@ -15,5 +15,3 @@ FOUNDATION_EXPORT double SilverPlateVersionNumber;
 FOUNDATION_EXPORT const unsigned char SilverPlateVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <SilverPlate/PublicHeader.h>
-
-
