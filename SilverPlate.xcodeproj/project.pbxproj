@@ -7,8 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8CB4CCFF13C7BBD4343844FE /* Pods_SilverPlate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58D669AAB49474BC046672C7 /* Pods_SilverPlate.framework */; };
+		C8D2BA0CD230F744B052DEC9 /* Pods_SilverPlateTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47D44D8EFB94B7D29AB061CF /* Pods_SilverPlateTests.framework */; };
 		D380A71C1E4E8E2400196A01 /* SilverPlate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D380A71B1E4E8E2400196A01 /* SilverPlate.swift */; };
 		D380A7221E4FDCE300196A01 /* SilverPlateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D380A7211E4FDCE300196A01 /* SilverPlateTests.swift */; };
+		D3854B141E53AF2B0099EC8C /* ConnectivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3854B131E53AF2B0099EC8C /* ConnectivityManager.swift */; };
 		D3FA8D4C1E4E863C001D6753 /* SilverPlate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3FA8D421E4E863C001D6753 /* SilverPlate.framework */; };
 		D3FA8D531E4E863C001D6753 /* SilverPlate.h in Headers */ = {isa = PBXBuildFile; fileRef = D3FA8D451E4E863C001D6753 /* SilverPlate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
@@ -24,13 +27,20 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		41B4F5F088A72E150CA15855 /* Pods-SilverPlateTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SilverPlateTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SilverPlateTests/Pods-SilverPlateTests.release.xcconfig"; sourceTree = "<group>"; };
+		47D44D8EFB94B7D29AB061CF /* Pods_SilverPlateTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SilverPlateTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		58D669AAB49474BC046672C7 /* Pods_SilverPlate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SilverPlate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7CA8969190C31489BF368BB /* Pods-SilverPlateTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SilverPlateTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SilverPlateTests/Pods-SilverPlateTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D380A71B1E4E8E2400196A01 /* SilverPlate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SilverPlate.swift; sourceTree = "<group>"; };
 		D380A7211E4FDCE300196A01 /* SilverPlateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SilverPlateTests.swift; sourceTree = "<group>"; };
+		D3854B131E53AF2B0099EC8C /* ConnectivityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectivityManager.swift; sourceTree = "<group>"; };
 		D3FA8D421E4E863C001D6753 /* SilverPlate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SilverPlate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3FA8D451E4E863C001D6753 /* SilverPlate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SilverPlate.h; sourceTree = "<group>"; };
 		D3FA8D461E4E863C001D6753 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3FA8D4B1E4E863C001D6753 /* SilverPlateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SilverPlateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3FA8D521E4E863C001D6753 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D892465A9FD77EB54BB0957E /* Pods-SilverPlate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SilverPlate.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SilverPlate/Pods-SilverPlate.debug.xcconfig"; sourceTree = "<group>"; };
+		EF8AB3ADA7396634DA3A79F3 /* Pods-SilverPlate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SilverPlate.release.xcconfig"; path = "Pods/Target Support Files/Pods-SilverPlate/Pods-SilverPlate.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CB4CCFF13C7BBD4343844FE /* Pods_SilverPlate.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,18 +57,49 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3FA8D4C1E4E863C001D6753 /* SilverPlate.framework in Frameworks */,
+				C8D2BA0CD230F744B052DEC9 /* Pods_SilverPlateTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5EF0B08E37CED53C0F745B7F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				58D669AAB49474BC046672C7 /* Pods_SilverPlate.framework */,
+				47D44D8EFB94B7D29AB061CF /* Pods_SilverPlateTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9A448E8C340F8F5D14D1F5D4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D892465A9FD77EB54BB0957E /* Pods-SilverPlate.debug.xcconfig */,
+				EF8AB3ADA7396634DA3A79F3 /* Pods-SilverPlate.release.xcconfig */,
+				B7CA8969190C31489BF368BB /* Pods-SilverPlateTests.debug.xcconfig */,
+				41B4F5F088A72E150CA15855 /* Pods-SilverPlateTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		D3854B121E53AEF30099EC8C /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				D3854B131E53AF2B0099EC8C /* ConnectivityManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		D3FA8D381E4E863C001D6753 = {
 			isa = PBXGroup;
 			children = (
 				D3FA8D441E4E863C001D6753 /* SilverPlate */,
 				D3FA8D4F1E4E863C001D6753 /* SilverPlateTests */,
 				D3FA8D431E4E863C001D6753 /* Products */,
+				9A448E8C340F8F5D14D1F5D4 /* Pods */,
+				5EF0B08E37CED53C0F745B7F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,6 +115,7 @@
 		D3FA8D441E4E863C001D6753 /* SilverPlate */ = {
 			isa = PBXGroup;
 			children = (
+				D3854B121E53AEF30099EC8C /* Managers */,
 				D3FA8D451E4E863C001D6753 /* SilverPlate.h */,
 				D3FA8D461E4E863C001D6753 /* Info.plist */,
 				D380A71B1E4E8E2400196A01 /* SilverPlate.swift */,
@@ -107,10 +150,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D3FA8D561E4E863C001D6753 /* Build configuration list for PBXNativeTarget "SilverPlate" */;
 			buildPhases = (
+				778760311D23BF6A3A34709A /* [CP] Check Pods Manifest.lock */,
 				D3FA8D3D1E4E863C001D6753 /* Sources */,
 				D3FA8D3E1E4E863C001D6753 /* Frameworks */,
 				D3FA8D3F1E4E863C001D6753 /* Headers */,
 				D3FA8D401E4E863C001D6753 /* Resources */,
+				9E5A380FCEEECB22062BCD8C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -125,9 +170,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D3FA8D591E4E863C001D6753 /* Build configuration list for PBXNativeTarget "SilverPlateTests" */;
 			buildPhases = (
+				E58C5B8F6D6E9530CB84A4F4 /* [CP] Check Pods Manifest.lock */,
 				D3FA8D471E4E863C001D6753 /* Sources */,
 				D3FA8D481E4E863C001D6753 /* Frameworks */,
 				D3FA8D491E4E863C001D6753 /* Resources */,
+				A2C01D07AFDF83166278E338 /* [CP] Embed Pods Frameworks */,
+				090B5D9D16E8131ED156364B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -197,11 +245,90 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		090B5D9D16E8131ED156364B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SilverPlateTests/Pods-SilverPlateTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		778760311D23BF6A3A34709A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9E5A380FCEEECB22062BCD8C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SilverPlate/Pods-SilverPlate-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A2C01D07AFDF83166278E338 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SilverPlateTests/Pods-SilverPlateTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E58C5B8F6D6E9530CB84A4F4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D3FA8D3D1E4E863C001D6753 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3854B141E53AF2B0099EC8C /* ConnectivityManager.swift in Sources */,
 				D380A71C1E4E8E2400196A01 /* SilverPlate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -326,6 +453,7 @@
 		};
 		D3FA8D571E4E863C001D6753 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D892465A9FD77EB54BB0957E /* Pods-SilverPlate.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -347,6 +475,7 @@
 		};
 		D3FA8D581E4E863C001D6753 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EF8AB3ADA7396634DA3A79F3 /* Pods-SilverPlate.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -367,6 +496,7 @@
 		};
 		D3FA8D5A1E4E863C001D6753 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B7CA8969190C31489BF368BB /* Pods-SilverPlateTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 4G3577L73Y;
@@ -380,6 +510,7 @@
 		};
 		D3FA8D5B1E4E863C001D6753 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 41B4F5F088A72E150CA15855 /* Pods-SilverPlateTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 4G3577L73Y;

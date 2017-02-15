@@ -9,62 +9,35 @@
 import Foundation
 import SystemConfiguration
 
-protocol SilverPlateDelegate {
-    func onInternetStatusChanged(status: Network)
+internal protocol SilverPlateDelegate {
+    func internetStatusChanged(status: SilverPlate.Network)
 }
 
-class SilverPlateDelegateImplementation: SilverPlateDelegate {
-    var internetStatusChanged: ((Network) -> Void)?
+public final class SilverPlate: SilverPlateDelegate {
     
-    func onInternetStatusChanged(status: Network) {
-        if let internetStatusChangedClosure = self.internetStatusChanged {
+    public enum Network: Int {
+        case none = 0
+        case wifi = 1
+        case cellular = 2
+    }
+    
+    public static let shared: SilverPlate = SilverPlate()
+    private var connectivity: ConnectivityManager
+    
+    private init() {
+        print("SilverPlate has just been initialized !")
+        connectivity = ConnectivityManager()
+    }
+    
+    public var onInternetStatusChanged: ((Network) -> Void)?
+    
+    internal func internetStatusChanged(status: Network) {
+        if let internetStatusChangedClosure = self.onInternetStatusChanged {
             internetStatusChangedClosure(status)
         }
     }
-}
-
-open class SilverPlate {
     
-    var delegate: SilverPlateDelegateImplementation?
-    
-    func isInternetAvailable() {
-        
-        var zeroAddress = sockaddr_in()
-        zeroAddress.sin_len = UInt8(MemoryLayout<sockaddr_in>.size)
-        zeroAddress.sin_family = sa_family_t(AF_INET)
-        
-        guard let defaultRouteReachability = withUnsafePointer(to: &zeroAddress, {
-            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {
-                SCNetworkReachabilityCreateWithAddress(nil, $0)
-            }
-        }) else {
-            self.delegate?.onInternetStatusChanged(status: Network.none)
-            return
-        }
-        
-        var flags: SCNetworkReachabilityFlags = []
-        if !SCNetworkReachabilityGetFlags(defaultRouteReachability, &flags) {
-            self.delegate?.onInternetStatusChanged(status: Network.none)
-            return
-        }
-        
-        let isReachable = flags.contains(.reachable)
-        let needsConnection = flags.contains(.connectionRequired)
-        
-        if(isReachable && !needsConnection) {
-            self.delegate?.onInternetStatusChanged(status: Network.wifi)
-            return
-        } else {
-            self.delegate?.onInternetStatusChanged(status: Network.none)
-            return
-        }
+    public func getReachabilityStatus() {
+        connectivity.getReachabilityStatus()
     }
 }
-
-enum Network: Int {
-    case none = 0
-    case wifi = 1
-    case wwan = 2
-}
-
-

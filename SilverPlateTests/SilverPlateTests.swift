@@ -21,24 +21,20 @@ class SilverPlateTests: XCTestCase {
         super.tearDown()
     }
     
+    /*
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {
             // Put the code you want to measure the time of here.
         }
     }
+    */
     
     func testInternetConnection() {
-        let silverPlate:SilverPlate = SilverPlate()
-        let silverPlateDelegate: SilverPlateDelegateImplementation = SilverPlateDelegateImplementation()
-        silverPlateDelegate.internetStatusChanged = { (status) in
+       
+        SilverPlate.shared.onInternetStatusChanged = { (status) in
             print("\nNetwork current status: \(status) \n")
-            XCTAssert(status == Network.wifi)
+            XCTAssert(status == SilverPlate.Network.wifi)
         }
-        
-        silverPlate.delegate = silverPlateDelegate
-        
-        silverPlate.isInternetAvailable()
     }
-    
 }
