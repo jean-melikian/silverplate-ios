@@ -15,6 +15,12 @@ before_install:
   - bundle install
   - pod install --repo-update --silent
 script:
+<<<<<<< Updated upstream
   - travis/fastlane_test.sh
 after_success:
   - travis/fastlane_deploy.sh
+=======
+  - ./travis/fastlane_test.sh
+after_success:
+  - ./travis/fastlane_deploy.sh
+>>>>>>> Stashed changes
