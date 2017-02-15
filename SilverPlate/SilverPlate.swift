@@ -15,10 +15,27 @@ internal protocol SilverPlateDelegate {
 
 public final class SilverPlate: SilverPlateDelegate {
     
-    public enum Network: Int {
-        case none = 0
-        case wifi = 1
-        case cellular = 2
+    public enum Network: String {
+        case none
+        case wifi
+        case cellular2g
+        case cellular3g
+        case cellular4g
+        
+        var description: String {
+            switch self {
+            case .none:
+                return "none"
+            case .wifi:
+                return "wifi"
+            case .cellular2g:
+                return "cellular2g"
+            case .cellular3g:
+                return "cellular3g"
+            case .cellular4g:
+                return "cellular4g"
+            }
+        }
     }
     
     public static let shared: SilverPlate = SilverPlate()
@@ -32,12 +49,13 @@ public final class SilverPlate: SilverPlateDelegate {
     public var onInternetStatusChanged: ((Network) -> Void)?
     
     internal func internetStatusChanged(status: Network) {
+        print("Internet is reachable via: \(status)")
         if let internetStatusChangedClosure = self.onInternetStatusChanged {
             internetStatusChangedClosure(status)
         }
     }
     
     public func getReachabilityStatus() {
-        connectivity.getReachabilityStatus()
+        connectivity.sendReachabilityStatus()
     }
 }
