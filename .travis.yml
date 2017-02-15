@@ -15,6 +15,6 @@ before_install:
   - bundle install
   - pod install --repo-update --silent
 script:
-  - bundle exec fastlane test
+  - travis/fastlane_test.sh
 after_success:
-  - bundle exec fastlane deploy
+  - travis/fastlane_deploy.sh
