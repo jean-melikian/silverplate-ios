@@ -9,44 +9,25 @@
 import Foundation
 import SystemConfiguration
 
-internal protocol SilverPlateDelegate {
+internal protocol SilverPlateProtocol {
     func internetStatusChanged(status: SilverPlate.Network)
+    func batteryStateChanged(status: SilverPlate.Battery)
+    
 }
 
-public final class SilverPlate: SilverPlateDelegate {
+public final class SilverPlate: SilverPlateProtocol {
     
-    public enum Network: String {
-        case none
-        case wifi
-        case cellular2g
-        case cellular3g
-        case cellular4g
-        
-        var description: String {
-            switch self {
-            case .none:
-                return "none"
-            case .wifi:
-                return "wifi"
-            case .cellular2g:
-                return "cellular2g"
-            case .cellular3g:
-                return "cellular3g"
-            case .cellular4g:
-                return "cellular4g"
-            }
-        }
-    }
-    
-    public static let shared: SilverPlate = SilverPlate()
+    // -- PRIVATE -------
     private var connectivity: ConnectivityManager
+    private var battery: BatteryManager
     
     private init() {
-        print("SilverPlate has just been initialized !")
         connectivity = ConnectivityManager()
+        battery = BatteryManager()
+        print("SilverPlate has just been initialized !")
     }
     
-    public var onInternetStatusChanged: ((Network) -> Void)?
+    // -- INTERNAL ------
     
     internal func internetStatusChanged(status: Network) {
         print("Internet is reachable via: \(status)")
@@ -55,7 +36,22 @@ public final class SilverPlate: SilverPlateDelegate {
         }
     }
     
+    internal func batteryStateChanged(status: Battery) {
+        print("SilverPlate -> Battery level: \(status)")
+        if let batteryStateChangedClosure = self.onBatteryStatusChanged {
+            batteryStateChangedClosure(status)
+        }
+    }
+    
+    // -- PUBLIC --------
+    public static let shared: SilverPlate = SilverPlate()
+    public var onInternetStatusChanged: ((Network) -> Void)?
+    public var onBatteryStatusChanged: ((Battery) -> Void)?
+    
     public func getReachabilityStatus() {
         connectivity.sendReachabilityStatus()
     }
+
+    
+    
 }
