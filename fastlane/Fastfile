@@ -1,47 +1,37 @@
 lane :test do
-  branch = ENV["TRAVIS_BRANCH"]
   scan(
     device: "iPhone 6",
     clean: true,
     code_coverage: true,
     slack_url: "https://hooks.slack.com/services/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",
-    slack_channel: "##{branch}",
-    slack_message: "[#{branch}] Scan results",
+    slack_channel: "##{get_version_number()}",
+    slack_message: "[#{get_version_number()}] Scan results",
     # Slack only if the current branch is master or develop
-    skip_slack: !((branch != "master") || (branch != "develop")),
+    skip_slack: false,
     # If the current branch is dev, send to slack only if tests fail,
     # to prevent from being spammed
     slack_only_on_failure: false,
-    open_report: branch == "develop"
+    open_report: true
   )
   xcov
 end
 
 lane :newrc do
-  branch = ENV["TRAVIS_BRANCH"]
-
-  if branch == "master"
-    sh('git fetch --tags')
-    tag = last_git_tag()
-    project_version = get_version_number()
-    version_bump_podspec(
-      path: "../SilverPlate.podspec",
-      version_number: project_version
-    )
-    podspec_version = version_get_podspec(path: "../SilverPlate.podspec")
-
-    if  tag == "v"+podspec_version
-      git_commit(path: ["../SilverPlate.podspec", "./Example/MyPod.lock"], message: "Bumped to version #{version}")
-    end
+  sh('git fetch --tags')
+  tag = last_git_tag()
+  project_version = get_version_number()
+  version_bump_podspec(
+    path: "../SilverPlate.podspec",
+    version_number: project_version
+  )
+  podspec_version = version_get_podspec(path: "../SilverPlate.podspec")
+  if tag == "v"+podspec_version
+    git_commit(path: ["../SilverPlate.podspec", "./Example/MyPod.lock"], message: "Bumped to version #{version}")
   end
 end
 
 lane :deploy do
-  branch = ENV["TRAVIS_BRANCH"]
-
-  if branch == "master"
     version = get_version_number()
-
     set_github_release(
       repository_name: "ozonePowered/silverplate-ios",
       name: version, # nom de la version sur GitHub
@@ -54,7 +44,7 @@ lane :deploy do
     slack(
       slack_url: "https://hooks.slack.com/services/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",
       slack_channel: "#release",
-      slack_message: "[#{branch}] There is a new release: v#{version}",
+      slack_message: "[#{get_version_number()}] There is a new release !",
       success: true,
       use_webhook_configured_username_and_icon: true
     )
