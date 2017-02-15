@@ -87,6 +87,7 @@ Carthage/Build
 # For more information about the recommended setup visit:
 # https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Gitignore.md
 
+fastlane/xcov_report
 fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
