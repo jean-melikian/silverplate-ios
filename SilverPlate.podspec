@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name      = "SilverPlate"
-s.version   = "0.4.5"
+s.version   = "0.4.6"
 s.summary   = "Just another framework serving everything you need on a silver plate"
 s.homepage  = "https://github.com/SilverPlate-Framework/silverplate-ios"
 s.license   = { :type => "BSD", :file => "LICENSE" }
@@ -9,5 +9,5 @@ s.source    = { :git => "https://github.com/SilverPlate-Framework/silverplate-io
 s.source_files  = 'SilverPlate/*.{swift,h}', 'SilverPlate/Managers/*.{swift,h}'
 s.ios.deployment_target = '8.0'
 s.requires_arc  = true
-s.dependency = "Reachability"
+s.dependency "ReachabilitySwift"
 end
