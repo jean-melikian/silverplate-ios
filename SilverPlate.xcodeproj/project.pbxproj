@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		8CB4CCFF13C7BBD4343844FE /* Pods_SilverPlate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58D669AAB49474BC046672C7 /* Pods_SilverPlate.framework */; };
 		C8D2BA0CD230F744B052DEC9 /* Pods_SilverPlateTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47D44D8EFB94B7D29AB061CF /* Pods_SilverPlateTests.framework */; };
+		D316B5D31E54FE9D00D05BE1 /* BatteryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D316B5D21E54FE9D00D05BE1 /* BatteryManager.swift */; };
+		D316B5D51E55003C00D05BE1 /* SilverPlateTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D316B5D41E55003C00D05BE1 /* SilverPlateTypes.swift */; };
 		D380A71C1E4E8E2400196A01 /* SilverPlate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D380A71B1E4E8E2400196A01 /* SilverPlate.swift */; };
 		D380A7221E4FDCE300196A01 /* SilverPlateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D380A7211E4FDCE300196A01 /* SilverPlateTests.swift */; };
 		D3854B141E53AF2B0099EC8C /* ConnectivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3854B131E53AF2B0099EC8C /* ConnectivityManager.swift */; };
@@ -31,6 +33,8 @@
 		47D44D8EFB94B7D29AB061CF /* Pods_SilverPlateTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SilverPlateTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		58D669AAB49474BC046672C7 /* Pods_SilverPlate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SilverPlate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7CA8969190C31489BF368BB /* Pods-SilverPlateTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SilverPlateTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SilverPlateTests/Pods-SilverPlateTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D316B5D21E54FE9D00D05BE1 /* BatteryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BatteryManager.swift; sourceTree = "<group>"; };
+		D316B5D41E55003C00D05BE1 /* SilverPlateTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SilverPlateTypes.swift; sourceTree = "<group>"; };
 		D380A71B1E4E8E2400196A01 /* SilverPlate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SilverPlate.swift; sourceTree = "<group>"; };
 		D380A7211E4FDCE300196A01 /* SilverPlateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SilverPlateTests.swift; sourceTree = "<group>"; };
 		D3854B131E53AF2B0099EC8C /* ConnectivityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectivityManager.swift; sourceTree = "<group>"; };
@@ -88,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				D3854B131E53AF2B0099EC8C /* ConnectivityManager.swift */,
+				D316B5D21E54FE9D00D05BE1 /* BatteryManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -119,6 +124,7 @@
 				D3FA8D451E4E863C001D6753 /* SilverPlate.h */,
 				D3FA8D461E4E863C001D6753 /* Info.plist */,
 				D380A71B1E4E8E2400196A01 /* SilverPlate.swift */,
+				D316B5D41E55003C00D05BE1 /* SilverPlateTypes.swift */,
 			);
 			path = SilverPlate;
 			sourceTree = "<group>";
@@ -329,6 +335,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3854B141E53AF2B0099EC8C /* ConnectivityManager.swift in Sources */,
+				D316B5D51E55003C00D05BE1 /* SilverPlateTypes.swift in Sources */,
+				D316B5D31E54FE9D00D05BE1 /* BatteryManager.swift in Sources */,
 				D380A71C1E4E8E2400196A01 /* SilverPlate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

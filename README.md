@@ -7,7 +7,14 @@ Easy to use, you do not need protocols/delegates nor to implement a gazillion me
 
 ___
 ## Implementation
-In a ViewController or any other class, to respond to reachability status change:
+- First, we need to give our application the permission to monitor the battery.
+In your AppDelegate's application method, add this line:
+
+```Swift3
+UIDevice.currentDevice().batteryMonitoringEnabled = true
+```
+
+- In a ViewController or any other class, to respond to reachability status change:
 
 ```Swift3
 import UIKit
