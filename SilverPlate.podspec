@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name      = "SilverPlate"
-s.version   = "0.4.1"
+s.version   = "0.4.2"
 s.summary   = "Just another framework serving everything you need on a silver plate"
 s.homepage  = "https://github.com/SilverPlate-Framework/silverplate-ios"
 s.license   = { :type => "BSD", :file => "LICENSE" }

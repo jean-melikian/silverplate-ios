@@ -14,20 +14,20 @@ internal class BatteryManager {
     
     init() {
         NotificationCenter.default.addObserver(self,
-                                               selector: Selector(("batteryStateDidChange:")),
+                                               selector: #selector(self.batteryStateDidChange),
                                                name: NSNotification.Name.UIDeviceBatteryStateDidChange,
                                                object: nil)
         NotificationCenter.default.addObserver(self,
-                                               selector: Selector(("batteryLevelDidChange:")),
+                                               selector: #selector(self.batteryLevelDidChange),
                                                name: NSNotification.Name.UIDeviceBatteryLevelDidChange,
                                                object: nil)
     }
     
-    func batteryLevelDidChange(notification: NSNotification) {
+    @objc func batteryLevelDidChange(notification: NSNotification) {
         sendBatteryLowLevel()
     }
     
-    func batteryStateDidChange(notification: NSNotification) {
+    @objc func batteryStateDidChange(notification: NSNotification) {
         sendBatteryStateChanged()
     }
     

@@ -62,8 +62,8 @@ public final class SilverPlate: SilverPlateProtocol {
     public var onBatteryLowLevel: ((Int) -> Void)?
     public var onBatteryStateChanged: ((BatteryState, Int) -> Void)?
     
-    public func getReachabilityStatus() {
-        connectivity.sendReachabilityStatus()
+    public func getReachabilityStatus() -> NetworkState {
+        return connectivity.getReachabilityStatus()
     }
     
     public func getBatteryLevel() -> Int {
@@ -73,5 +73,11 @@ public final class SilverPlate: SilverPlateProtocol {
         return -1
     }
     
+    public func getBatteryState() -> BatteryState {
+        if battery != nil {
+            return (battery?.getBatteryState())!
+        }
+        return BatteryState.unknown
+    }
     
 }
