@@ -28,17 +28,18 @@ internal class ConnectivityManager {
         }
     }
     
-    func sendReachabilityStatus() {
+    func getReachabilityStatus() -> SilverPlate.NetworkState {
         let networkInfo = CTTelephonyNetworkInfo();
         let carrierTypeString = networkInfo.currentRadioAccessTechnology
+        var carrierType: SilverPlate.NetworkState = SilverPlate.NetworkState.none
         
         if reachability.isReachable {
             if reachability.isReachableViaWiFi {
                 print("Reachable via WiFi")
-                SilverPlate.shared.internetStateChanged(state: SilverPlate.NetworkState.wifi)
+                carrierType = SilverPlate.NetworkState.wifi
+                
             } else if reachability.isReachableViaWWAN {
                 print("Reachable via Cellular")
-                var carrierType: SilverPlate.NetworkState
                 switch carrierTypeString! {
                 // 2G
                 case CTRadioAccessTechnologyEdge, CTRadioAccessTechnologyWCDMA:
@@ -64,17 +65,22 @@ internal class ConnectivityManager {
                 default:
                     carrierType = SilverPlate.NetworkState.cellular3g
                 }
-                SilverPlate.shared.internetStateChanged(state: carrierType)
             }
+            
         } else {
             print("Network not reachable")
-            SilverPlate.shared.internetStateChanged(state: SilverPlate.NetworkState.none)
+            carrierType = SilverPlate.NetworkState.none
         }
+        return carrierType
+    }
+    
+    func sendReachabilityStatus() {
+        SilverPlate.shared.internetStateChanged(state: getReachabilityStatus())
     }
     
     @objc func reachabilityDidChanged(note: NSNotification) {
         reachability = note.object as! Reachability
-        sendReachabilityStatus()
+        _ = sendReachabilityStatus()
     }
     
     deinit {

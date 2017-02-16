@@ -3,6 +3,7 @@ lane :test do
     device: "iPhone 6",
     clean: true,
     code_coverage: true,
+    scheme: "SilverPlate",
     slack_url: "https://hooks.slack.com/services/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",
     slack_channel: "##{get_version_number()}",
     slack_message: "[#{get_version_number()}] Scan results",
