@@ -1,11 +1,12 @@
 lane :test do
+  slack_url = "https://hooks.slack.com/services/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"
   scan(
     device: "iPhone 6",
     clean: true,
     code_coverage: true,
     scheme: "SilverPlate",
-    slack_url: "https://hooks.slack.com/services/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",
-    slack_channel: "##{get_version_number()}",
+    slack_url: slack_url,
+    slack_channel: "#test",
     slack_message: "[#{get_version_number()}] Scan results",
     # Slack only if the current branch is master or develop
     skip_slack: false,
@@ -33,6 +34,7 @@ end
 
 lane :deploy do
   version = get_version_number()
+  slack_url = "https://hooks.slack.com/services/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"
   set_github_release(
     repository_name: "ozonePowered/silverplate-ios",
     name: version, # nom de la version sur GitHub
@@ -43,7 +45,7 @@ lane :deploy do
   )
   pod_push()
   slack(
-    slack_url: "https://hooks.slack.com/services/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",
+    slack_url: slack_url,
     slack_channel: "#release",
     slack_message: "[#{get_version_number()}] There is a new release !",
     success: true,
