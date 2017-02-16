@@ -15,7 +15,15 @@ lane :test do
     slack_only_on_failure: false,
     open_report: true
   )
-  xcov
+  #xcov(
+    #scheme: "SilverPlate",
+    #slack_url: slack_url,
+    #slack_channel: "#test",
+    #slack_message: "[#{get_version_number()}] Scan results",
+    #skip_slack: false,
+    #html_report: true,
+    #markdown_report: true
+  #)
 end
 
 lane :newrc do
