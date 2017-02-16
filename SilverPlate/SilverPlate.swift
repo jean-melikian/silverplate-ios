@@ -10,48 +10,68 @@ import Foundation
 import SystemConfiguration
 
 internal protocol SilverPlateProtocol {
-    func internetStatusChanged(status: SilverPlate.Network)
-    func batteryStateChanged(status: SilverPlate.Battery)
-    
+    func internetStateChanged(state: SilverPlate.NetworkState)
+    func batteryLowLevel(level: Int)
+    func batteryStateChanged(state: SilverPlate.BatteryState, level: Int)
 }
 
 public final class SilverPlate: SilverPlateProtocol {
     
     // -- PRIVATE -------
+    internal let device = UIDevice.current
     private var connectivity: ConnectivityManager
-    private var battery: BatteryManager
+    private var battery: BatteryManager?
     
     private init() {
+        device.isBatteryMonitoringEnabled = true
         connectivity = ConnectivityManager()
-        battery = BatteryManager()
+        if UIDevice.current.isBatteryMonitoringEnabled {
+            battery = BatteryManager()
+        } else {
+            battery = nil
+        }
         print("SilverPlate has just been initialized !")
     }
     
     // -- INTERNAL ------
     
-    internal func internetStatusChanged(status: Network) {
-        print("Internet is reachable via: \(status)")
-        if let internetStatusChangedClosure = self.onInternetStatusChanged {
-            internetStatusChangedClosure(status)
+    internal func internetStateChanged(state: NetworkState) {
+        print("Internet is reachable via: \(state)")
+        if let internetStateChangedClosure = self.onInternetStateChanged {
+            internetStateChangedClosure(state)
         }
     }
     
-    internal func batteryStateChanged(status: Battery) {
-        print("SilverPlate -> Battery level: \(status)")
-        if let batteryStateChangedClosure = self.onBatteryStatusChanged {
-            batteryStateChangedClosure(status)
+    internal func batteryLowLevel(level: Int) {
+        print("SilverPlate -> Battery level: \(level)%")
+        if let batteryLowLevelClosure = self.onBatteryLowLevel {
+            batteryLowLevelClosure(level)
+        }
+    }
+    
+    internal func batteryStateChanged(state: SilverPlate.BatteryState, level: Int) {
+        print("SilverPlate -> Battery state and level: \(state) (\(level)%)")
+        if let batteryStateChangedClosure = self.onBatteryStateChanged {
+            batteryStateChangedClosure(state, level)
         }
     }
     
     // -- PUBLIC --------
     public static let shared: SilverPlate = SilverPlate()
-    public var onInternetStatusChanged: ((Network) -> Void)?
-    public var onBatteryStatusChanged: ((Battery) -> Void)?
+    public var onInternetStateChanged: ((NetworkState) -> Void)?
+    public var onBatteryLowLevel: ((Int) -> Void)?
+    public var onBatteryStateChanged: ((BatteryState, Int) -> Void)?
     
     public func getReachabilityStatus() {
         connectivity.sendReachabilityStatus()
     }
-
+    
+    public func getBatteryLevel() -> Int {
+        if battery != nil {
+            return (battery?.getBatteryLevel())!
+        }
+        return -1
+    }
     
     
 }

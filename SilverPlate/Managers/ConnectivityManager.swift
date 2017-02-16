@@ -18,7 +18,7 @@ internal class ConnectivityManager {
         //declare this property where it won't go out of scope relative to your listener
         reachability = Reachability()!
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(self.reachabilityChanged),
+                                               selector: #selector(self.reachabilityDidChanged),
                                                name: ReachabilityChangedNotification,
                                                object: reachability)
         do {
@@ -35,14 +35,14 @@ internal class ConnectivityManager {
         if reachability.isReachable {
             if reachability.isReachableViaWiFi {
                 print("Reachable via WiFi")
-                SilverPlate.shared.internetStatusChanged(status: SilverPlate.Network.wifi)
+                SilverPlate.shared.internetStateChanged(state: SilverPlate.NetworkState.wifi)
             } else if reachability.isReachableViaWWAN {
                 print("Reachable via Cellular")
-                var carrierType: SilverPlate.Network
+                var carrierType: SilverPlate.NetworkState
                 switch carrierTypeString! {
                 // 2G
                 case CTRadioAccessTechnologyEdge, CTRadioAccessTechnologyWCDMA:
-                    carrierType = SilverPlate.Network.cellular2g
+                    carrierType = SilverPlate.NetworkState.cellular2g
                     break
                     
                 // 3G
@@ -54,26 +54,25 @@ internal class ConnectivityManager {
                      CTRadioAccessTechnologyCDMAEVDORev0,
                      CTRadioAccessTechnologyCDMAEVDORevA,
                      CTRadioAccessTechnologyCDMAEVDORevB:
-                    carrierType = SilverPlate.Network.cellular3g
+                    carrierType = SilverPlate.NetworkState.cellular3g
                     break
                     
                 // 4G
                 case CTRadioAccessTechnologyLTE:
-                    carrierType = SilverPlate.Network.cellular4g
+                    carrierType = SilverPlate.NetworkState.cellular4g
                     break
                 default:
-                    carrierType = SilverPlate.Network.cellular3g
+                    carrierType = SilverPlate.NetworkState.cellular3g
                 }
-                SilverPlate.shared.internetStatusChanged(status: carrierType)
+                SilverPlate.shared.internetStateChanged(state: carrierType)
             }
         } else {
             print("Network not reachable")
-            SilverPlate.shared.internetStatusChanged(status: SilverPlate.Network.none)
+            SilverPlate.shared.internetStateChanged(state: SilverPlate.NetworkState.none)
         }
     }
     
-    @objc func reachabilityChanged(note: NSNotification) {
-        
+    @objc func reachabilityDidChanged(note: NSNotification) {
         reachability = note.object as! Reachability
         sendReachabilityStatus()
     }
