@@ -43,6 +43,8 @@ end
 lane :deploy do
   version = get_version_number()
   slack_url = "https://hooks.slack.com/services/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"
+  cocoapods_url = "https://cocoapods.org/pods/SilverPlate"
+  github_url = "https://github.com/SilverPlate-Framework/silverplate-ios"
   set_github_release(
     repository_name: "ozonePowered/silverplate-ios",
     name: version, # nom de la version sur GitHub
@@ -54,8 +56,8 @@ lane :deploy do
   pod_push()
   slack(
     slack_url: slack_url,
-    slack_channel: "#release",
-    slack_message: "[#{get_version_number()}] There is a new release !",
+    channel: "#release",
+    message: "[#{get_version_number()}] There is a new release. Check it out at #{cocoapods_url} and #{github_url} ! :upside_down_face:",
     success: true,
     use_webhook_configured_username_and_icon: true
   )
