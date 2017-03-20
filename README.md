@@ -1,11 +1,10 @@
 # SilverPlate Framework [![Build Status](https://travis-ci.org/SilverPlate-Framework/silverplate-ios.svg?branch=master)](https://travis-ci.org/SilverPlate-Framework/silverplate-ios)
-___
+
 ## Description
 __SilverPlate__ is a Swift3 framework which elegantly brings some of the most important system events to you.
 
 Easy to use, you do not need protocols/delegates nor to implement a gazillion methods into your neat classes as the __SilverPlate__ public API relies on simple closures.
 
-___
 ## Implementation
 - In a ViewController or any other class, to respond to reachability status change:
 

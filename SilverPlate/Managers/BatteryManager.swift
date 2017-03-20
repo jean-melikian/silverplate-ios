@@ -8,11 +8,12 @@
 
 import Foundation
 
-internal class BatteryManager {
+internal class BatteryManager : Manager {
     let device = UIDevice.current
     let minimumBatteryLevel: Int = 40
     
-    init() {
+    override init() {
+        super.init()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.batteryStateDidChange),
                                                name: NSNotification.Name.UIDeviceBatteryStateDidChange,

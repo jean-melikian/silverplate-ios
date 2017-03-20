@@ -22,6 +22,11 @@ public final class SilverPlate: SilverPlateProtocol {
     private var connectivity: ConnectivityManager
     private var battery: BatteryManager?
     
+    // Closures objects arrays
+    public var onInternetStateChanged: (AnyClass, [((NetworkState) -> Void)]) = (NSObject.self, [])
+    public var onBatteryLowLevel: [((Int) -> Void)] = []
+    public var onBatteryStateChanged: [((BatteryState, Int) -> Void)] = []
+    
     private init() {
         device.isBatteryMonitoringEnabled = true
         connectivity = ConnectivityManager()
@@ -36,31 +41,36 @@ public final class SilverPlate: SilverPlateProtocol {
     // -- INTERNAL ------
     
     internal func internetStateChanged(state: NetworkState) {
-        print("Internet is reachable via: \(state)")
-        if let internetStateChangedClosure = self.onInternetStateChanged {
-            internetStateChangedClosure(state)
+        self.onInternetStateChanged.1.forEach { (closure) in
+            closure(state)
         }
     }
     
     internal func batteryLowLevel(level: Int) {
         print("SilverPlate -> Battery level: \(level)%")
-        if let batteryLowLevelClosure = self.onBatteryLowLevel {
-            batteryLowLevelClosure(level)
+        self.onBatteryLowLevel.forEach { (closure) in
+            closure(level)
         }
     }
     
     internal func batteryStateChanged(state: SilverPlate.BatteryState, level: Int) {
         print("SilverPlate -> Battery state and level: \(state) (\(level)%)")
-        if let batteryStateChangedClosure = self.onBatteryStateChanged {
-            batteryStateChangedClosure(state, level)
+        self.onBatteryStateChanged.forEach { (closure) in
+            closure(state, level)
         }
     }
-    
+
     // -- PUBLIC --------
     public static let shared: SilverPlate = SilverPlate()
-    public var onInternetStateChanged: ((NetworkState) -> Void)?
-    public var onBatteryLowLevel: ((Int) -> Void)?
-    public var onBatteryStateChanged: ((BatteryState, Int) -> Void)?
+    
+    public func registerOnInternetStatusChange(registering: Any, closure: @escaping ((NetworkState) -> Void)) {
+        self.onInternetStateChanged.1.append(closure)
+        print("Registered for InternetStatusChange")
+    }
+    
+    public func unregister(manager: Manager) {
+        print("Unregistering for \(manager.type)")
+    }
     
     public func getReachabilityStatus() -> NetworkState {
         return connectivity.getReachabilityStatus()

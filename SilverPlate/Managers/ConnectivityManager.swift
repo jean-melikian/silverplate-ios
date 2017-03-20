@@ -10,13 +10,15 @@ import Foundation
 import ReachabilitySwift
 import CoreTelephony
 
-internal class ConnectivityManager {
+internal class ConnectivityManager : Manager {
     
     var reachability: Reachability
     
-    init() {
+    override init() {
         //declare this property where it won't go out of scope relative to your listener
         reachability = Reachability()!
+        
+        super.init()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.reachabilityDidChanged),
                                                name: ReachabilityChangedNotification,
